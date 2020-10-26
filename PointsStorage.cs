@@ -47,14 +47,11 @@ public class PointsStorage : MonoBehaviour
         if(P == null)
         {
             P = this;
-            //Debug.Log("Instance Set");
         }
         else
         {
             Destroy(this.gameObject);
         }
-
-        //CountTotalPoints();
     }
     // Start is called before the first frame update
     void Start()
@@ -69,8 +66,6 @@ public class PointsStorage : MonoBehaviour
         //Reset data when in Main Menu scene
         if(SceneManager.GetActiveScene().name == "Main_Menu")
         {
-            //print("SHIT RESET THO");
-
             Reset();
             RoundsManager.R.Reset();
         }
