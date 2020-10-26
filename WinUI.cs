@@ -29,16 +29,6 @@ public class WinUI : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    /*private void SetWinText(string playerName)
-    {
-        winText.text = playerName + " Wins!";
-    }
-
-    public void Restart()
-    {
-        SceneManager.LoadScene(sceneToRestart);
-    }*/
-
     private void Update()
     {
         if(winImageNum >= 0)
