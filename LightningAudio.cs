@@ -17,7 +17,6 @@ public class LightningAudio : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Currently not working
         if (thisParticleSystem.isEmitting)
         {
             Debug.Log("IS EMITTING");
