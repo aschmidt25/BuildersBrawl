@@ -35,7 +35,6 @@ public class PostgameCameraController : VirtualCameraControllerBase
         if (winUIRef == null)
         {
             winUIRef = WinUI.S;
-            //winUIRef.gameObject.SetActive(false);
         }
 
     }
@@ -54,7 +53,6 @@ public class PostgameCameraController : VirtualCameraControllerBase
             //turn on winUI
             winUIRef.gameObject.SetActive(true);
             GameManager.S.winner.GetComponent<Points>().MakeWinner();
-            //Debug.Log("WINUIREF ACTIVE");
 
             GameManager.S.winner.GetComponent<FlashyPoints>().ShowPointsGained(GameManager.S.winner.gameObject.transform.position, GameManager.S.winner.gameObject.GetComponent<Points>().pointsForOtherSide);
             GameManager.S.winner.gameObject.GetComponent<Points>().AddPointsForOtherSide();
