@@ -31,13 +31,6 @@ public class WinState : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
-
-        //print("Win trigger " + other.gameObject.name);
-
-        //print(other.gameObject.GetComponent<PlayerController>() != null);
-        //print(!GameManager.S.someoneWon);
-
         //if player touching and no one has won yet
         if (other.gameObject.GetComponent<PlayerController>() != null && (!GameManager.S.someoneWon))
         {
@@ -52,7 +45,7 @@ public class WinState : MonoBehaviour
             float timeForGame = Time.time - Countdown.startTime;
             int minutes = Mathf.RoundToInt(timeForGame / 60);
             int seconds = Mathf.RoundToInt(timeForGame % 60);
-            //GameLogger.gameTime = minutes + "minutes, " + seconds + "seconds";
+
             GameLogger.gameTime = string.Format("{0:00}:{1:00}", minutes, seconds);
             GameLogger.LogData();
             //set the winner
@@ -62,20 +55,13 @@ public class WinState : MonoBehaviour
 
             playerWhoWon = other.gameObject.name;
             playerWhoWon = playerWhoWon.Replace("Prefab_P", "");
-            //GameObject.Find("Main Camera").GetComponent<CameraController>().ZoomOnWinner();
-
-            //add points to the winner
-            //other.gameObject.GetComponent<FlashyPoints>().ShowPointsGained(other.gameObject.transform.position, other.gameObject.GetComponent<Points>().pointsForOtherSide);
-            //other.gameObject.GetComponent<Points>().AddPointsForOtherSide();
 
             //turn on win UI
-            //winUI.GetComponent<Text>().text = playerWhoWon + " Won! \n \n Hit B to Continue";
             winUI.SetActive(true);
             
 
             //make ability to move to MM available
             GameManager.S.someoneWon = true;
-            //Debug.Log("someone won = " + GameManager.S.someoneWon);
 
             //look at pole, stand next to, then trigger animation
         }
