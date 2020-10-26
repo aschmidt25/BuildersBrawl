@@ -82,7 +82,6 @@ public class PostGameCanvas : MonoBehaviour
     private bool triggerP3 = false;
     private bool triggerP4 = false;
 
-    //public Image firstFace, secondFace, thirdPlace, foruthPlace;
     public Text p1KillsText, p2KillsText, p3KillsText, p4KillsText;
     public Text p1BuildsText, p2BuildsText, p3BuildsText, p4BuildsText;
     public Text p1PointsText, p2PointsText, p3PointsText, p4PointsText;
@@ -119,7 +118,6 @@ public class PostGameCanvas : MonoBehaviour
 
     PlayerSelect selector;
 
-    //[SerializeField]
     public bool flipFirstPlace, flipSecondPlace, flipThirdPlace, flipFourthPlace;
     public bool flipBackFirstPlace, flipBackSecondPlace, flipBackThirdPlace, fliBackpFourthPlace;
     private float flipNumP1 = 0, flipNumP2 = 0, flipNumP3 = 0, flipNumP4 = 0;
@@ -153,17 +151,7 @@ public class PostGameCanvas : MonoBehaviour
     {
         selector = PlayerSelect.S;
         players = selector.ActivePlayers.Count;
-        /*players = 2;
-        if (GameManager.S.player3)
-        {
-            players = 3;
-            if (GameManager.S.player4)
-            {
-                players = 4;
-            }
-        }
-        */
-
+        
         _rewiredPlayersByPlacing = new List<Player>();
 
         Debug.Log("Players = " + players);
@@ -195,7 +183,6 @@ public class PostGameCanvas : MonoBehaviour
         buildsTexts = new Text[4];
         pointsTexts = new Text[4];
 
-        //bannerPos = new Transform[players];
         playerBanners = new Image[players];
 
         _stepTIme = 180 / _timeToRotate;
@@ -217,12 +204,8 @@ public class PostGameCanvas : MonoBehaviour
         pointsTexts[3] = p4PointsText;
 
         playerName = new string[players];
-        //_startTime = Time.time;
-
-        //UICanvas = gameObject.find(";
-
+        
         //get players points
-        //roundNum = GameObject.Find("DataManager").GetComponent<RoundsManager>().round;
         SetRoundText();
 
         for (int i = 0; i < PlayerSelect.S.ActivePlayers.Count; i++)
@@ -232,19 +215,15 @@ public class PostGameCanvas : MonoBehaviour
             {
                 case PlayerController.PlayerNumber.p1Clumsy:
                     p1Points = PointsStorage.P.P1Points[PointsStorage.P.total];
-                    //player1Head = UICanvas.GetComponent<PointsBar>().player1Head;
                     playerHeadsArr[i] = player1Head;
                     p1Kills = PointsStorage.P.P1Points[PointsStorage.P.kills];
                     p1Builds = PointsStorage.P.P1Points[PointsStorage.P.builds];
                     p1Wins = PointsStorage.P.P1Points[PointsStorage.P.wins];
                     playerPoints[i] = PointsStorage.P.P1Points[PointsStorage.P.total];
                     playerName[i] = "Player 1";
-                    //playerHeadsArr[i].gameObject.SetActive(true);
-                    //player1.GetComponent<GameInputManager>().gamePlayerId = PlayerSelect.S.ActivePlayers[i].id;
                     break;
                 case PlayerController.PlayerNumber.p2Tough:
                     p2Points = PointsStorage.P.P2Points[PointsStorage.P.total];
-                    //player2Head = UICanvas.GetComponent<PointsBar>().player2Head;
                     playerHeadsArr[i] = player2Head;
                     p2Kills = PointsStorage.P.P2Points[PointsStorage.P.kills];
                     p2Builds = PointsStorage.P.P2Points[PointsStorage.P.builds];
@@ -252,61 +231,33 @@ public class PostGameCanvas : MonoBehaviour
                     playerPoints[i] = PointsStorage.P.P2Points[PointsStorage.P.total];
                     
                     playerName[i] = "Player 2";
-                    //playerHeadsArr[i].gameObject.SetActive(true);
-                    //player2.GetComponent<GameInputManager>().gamePlayerId = PlayerSelect.S.ActivePlayers[i].id;
                     break;
                 case PlayerController.PlayerNumber.p3Joker:
                     playerName[i] = "Player 3";
                     playerPoints[i] = PointsStorage.P.P3Points[PointsStorage.P.total];
-                    //players = 3;
-                    //player3Head = UICanvas.GetComponent<PointsBar>().player3Head;
                     playerHeadsArr[i] = player3Head;
                     p3Points = PointsStorage.P.P3Points[PointsStorage.P.total];
                     p3Kills = PointsStorage.P.P3Points[PointsStorage.P.kills];
                     p3Builds = PointsStorage.P.P3Points[PointsStorage.P.builds];
                     p3Wins = PointsStorage.P.P3Points[PointsStorage.P.wins];
-                    //bannerPos[2] = ThirdBanner;
 
                     playerPlacesArr[i] = endGameManager.GetComponent<EndGame>().third.ToString();
-
-                    //Debug.Log("i = " + i + "" + );
-                    
-                    //playerHeadsArr[i].gameObject.SetActive(true);
-                    //player3.GetComponent<GameInputManager>().gamePlayerId = PlayerSelect.S.ActivePlayers[i].id;
                     break;
                 case PlayerController.PlayerNumber.p4Crazy:
                     playerName[i] = "Player 4";
                     playerPoints[i] = PointsStorage.P.P4Points[PointsStorage.P.total];
-                    //players = 4;
-                    //player4Head = UICanvas.GetComponent<PointsBar>().player4Head;
                     playerHeadsArr[i] = player4Head;
                     p4Points = PointsStorage.P.P4Points[PointsStorage.P.total];
                     p4Kills = PointsStorage.P.P4Points[PointsStorage.P.kills];
                     p4Builds = PointsStorage.P.P4Points[PointsStorage.P.builds];
                     p4Wins = PointsStorage.P.P4Points[PointsStorage.P.wins];
-                    //bannerPos[3] = FourthBanner;
 
                     playerPlacesArr[i] = endGameManager.GetComponent<EndGame>().last.ToString();
-
-                    
-                   // playerHeadsArr[i].gameObject.SetActive(true);
-                    //player4.GetComponent<GameInputManager>().gamePlayerId = PlayerSelect.S.ActivePlayers[i].id;
                     break;
                 default:
                     break;
             }
         }
-
-        
-        //bannerPos[0] = FirstBanner;
-
-
-        
-        //players = 2;
-        //bannerPos[1] = SecondBanner;
-
-        
-
 
         if (players >= 3)
         {
@@ -327,9 +278,6 @@ public class PostGameCanvas : MonoBehaviour
             playerHeadsArr[3].gameObject.SetActive(false);
             purpleBanner.gameObject.SetActive(false);
         }
-
-        //DetermineOriginalHeadSpots();
-
         //USE FIRST, SECOND, ETC FROM ENDGAME
         playerPlacesArr[0] = endGameManager.GetComponent<EndGame>().first.ToString();
         playerPlacesArr[1] = endGameManager.GetComponent<EndGame>().second.ToString();
@@ -368,17 +316,7 @@ public class PostGameCanvas : MonoBehaviour
         moveStats1stPlace = true;
         moveStats2ndPlace = true;
         moveStats3rdPlace = true;
-        moveStats4thPlace = true;
-
-        /*for (int i = 0; i < 4; i++)
-        {
-            firstBanners[i].gameObject.SetActive(false);
-            secondBanners[i].gameObject.SetActive(false);
-            thirdBanners[i].gameObject.SetActive(false);
-            fourthBanners[i].gameObject.SetActive(false);
-        }*/
-
-        
+        moveStats4thPlace = true; 
     }
 
     // Update is called once per frame
@@ -392,7 +330,6 @@ public class PostGameCanvas : MonoBehaviour
 
         if (!hasMovedFacesStart)
         {
-            //DetermineOriginalHeadSpots();
             hasMovedFacesStart = true;
         }
 
@@ -418,26 +355,10 @@ public class PostGameCanvas : MonoBehaviour
         //move each head to the beginning one at a time
         if (triggerP1)
         {
-            //Debug.Log("Trigger P1");
-
             MoveHeadToStart(playerHeadsArr[0]);
-            //UpdateStatsText(1);
-            //MoveStats(1, placeNames[0]);
-            /*for (int i = 0; i < PointsStorage.P.P1Points.Length; i++)
-            {
-                //CountUpPoints(PointsStorage.P.P1Points[i], PointsStorage.P.oldP1Points[i]);
-            }*/
-            //Mathf.Lerp()
-            //Debug.Log("Head Dist: " + Vector2.Distance(player1Head.transform.position, startPoint.position));
-            if(Vector2.Distance(player1Head.transform.position, startPoint.position) >= 0.5f)
-            {
-                //old
-            }
 
-            //Debug.Log("In Distance IF");
             for (int i = 0; i < players; i++)
             {
-                //Debug.Log(placeNums[i] + " " + moveStats1stPlace);
                 if (moveStats1stPlace)
                 {
                     Debug.Log("Move Banner " + i + " to " + placeNums[i]);
@@ -452,18 +373,7 @@ public class PostGameCanvas : MonoBehaviour
 
         if (triggerP2)
         {
-            //Debug.Log("Trigger P2");
-
             MoveHeadToStart(playerHeadsArr[1]);
-            //UpdateStatsText(2);
-            /*for (int i = 0; i < PointsStorage.P.P2Points.Length; i++)
-            {
-                CountUpPoints(PointsStorage.P.P2Points[i], PointsStorage.P.oldP2Points[i]);
-            }*/
-            if (Vector2.Distance(player2Head.transform.position, endPoint.position) >= 0.5f)
-            {
-                //old
-            }
 
             for (int i = 0; i < players; i++)
             {
@@ -481,11 +391,7 @@ public class PostGameCanvas : MonoBehaviour
         if (triggerP3)
         {
             MoveHeadToStart(playerHeadsArr[2]);
-            //UpdateStatsText(3);
-            /*for (int i = 0; i < PointsStorage.P.P3Points.Length; i++)
-            {
-                CountUpPoints(PointsStorage.P.P3Points[i], PointsStorage.P.oldP3Points[i]);
-            }*/
+
             if (Vector2.Distance(player3Head.transform.position, endPoint.position) >= 0.5f)
             {
                 for (int i = 0; i < players; i++)
@@ -505,12 +411,7 @@ public class PostGameCanvas : MonoBehaviour
         if (triggerP4)
         {
             MoveHeadToStart(playerHeadsArr[3]);
-            //UpdateStatsText(4);
-            //go through each stat and slowly increase it to the new total
-            /*for (int i = 0; i < PointsStorage.P.P4Points.Length; i++)
-            {
-                CountUpPoints(PointsStorage.P.P4Points[i], PointsStorage.P.oldP4Points[i]);
-            }*/
+
             if (Vector2.Distance(player4Head.transform.position, endPoint.position) >= 0.5f)
             {
                 //make audio ping that player's points is done
@@ -526,42 +427,13 @@ public class PostGameCanvas : MonoBehaviour
                 //switch the stats and the banner
 
                 triggerP4 = false;
-                //triggerP2 = true;
             }
         }
-
-        //move banners
-        /*if (moveStats1stPlace)
-        {
-            MoveStatsAndBanner(placeNums[0]);
-            moveStats1stPlace = false;
-        }
-
-        if (moveStats2ndPlace)
-        {
-            MoveStatsAndBanner(placeNums[1]);
-            moveStats2ndPlace = false;
-        }
-
-        if (moveStats3rdPlace)
-        {
-            MoveStatsAndBanner(placeNums[2]);
-            moveStats3rdPlace = false;
-        }
-
-        if (moveStats4thPlace)
-        {
-            MoveStatsAndBanner(placeNums[3]);
-            moveStats4thPlace = false;
-        }
-        */
         Debug.Log(flipBackFirstPlace);
 
         if (flipFirstPlace)
         {
             //flip first place plate
-            //Mathf.Lerp(FirstPlace3DPlate.gameObject.transform.rotation.y, 180, 0.15f);
-            //FirstPlace3DPlate.gameObject.transform.Rotate(new Vector3(0, 5, 0), Space.Self);
 
             _timeToRotate = 1.5f;
             _stepTIme = 180 / _timeToRotate;
@@ -581,8 +453,6 @@ public class PostGameCanvas : MonoBehaviour
                     else
                     {
                         FirstPlace3DPlate.transform.eulerAngles = new Vector3(transform.eulerAngles.x, 180, transform.eulerAngles.z);
-                        //player1Plate.gameObject.SetActive(false);
-                        //player1BackPlate.gameObject.SetActive(true);
                         flipFirstPlace = false;
                         flipNumP1 = 1;
                     }
@@ -601,8 +471,6 @@ public class PostGameCanvas : MonoBehaviour
                     else
                     {
                         FirstPlace3DPlate.transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, transform.eulerAngles.z);
-                        //player1Plate.gameObject.SetActive(false);
-                        //player1BackPlate.gameObject.SetActive(true);
                         flipFirstPlace = false;
                         flipNumP1 = 0;
                     }
@@ -640,8 +508,7 @@ public class PostGameCanvas : MonoBehaviour
                     else
                     {
                         SecondPlace3DPlate.transform.eulerAngles = new Vector3(transform.eulerAngles.x, 180, transform.eulerAngles.z);
-                        //player1Plate.gameObject.SetActive(false);
-                        //player1BackPlate.gameObject.SetActive(true);
+
                         flipSecondPlace = false;
                         flipNumP2 = 1;
                     }
@@ -660,8 +527,7 @@ public class PostGameCanvas : MonoBehaviour
                     else
                     {
                         SecondPlace3DPlate.transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, transform.eulerAngles.z);
-                        //player1Plate.gameObject.SetActive(false);
-                        //player1BackPlate.gameObject.SetActive(true);
+
                         flipSecondPlace = false;
                         flipNumP2 = 0;
                     }
@@ -672,21 +538,6 @@ public class PostGameCanvas : MonoBehaviour
                     }
                     break;
             }
-
-            
-
-            //Mathf.Lerp(SecondPlace3DPlate.gameObject.transform.rotation.y, 180, 0.15f);
-            /*SecondPlace3DPlate.gameObject.transform.Rotate(new Vector3(0, 5, 0), Space.Self);
-
-            if (SecondPlace3DPlate.transform.rotation.y == 90)
-            {
-                player2Plate.gameObject.SetActive(false);
-                player2BackPlate.gameObject.SetActive(true);
-            }
-            if (SecondPlace3DPlate.transform.rotation.y == -180)
-            {
-                flipSecondPlace = false;
-            }*/
         }
 
         if (flipThirdPlace)
@@ -707,8 +558,6 @@ public class PostGameCanvas : MonoBehaviour
                     else
                     {
                         ThirdPlace3DPlate.transform.eulerAngles = new Vector3(transform.eulerAngles.x, 180, transform.eulerAngles.z);
-                        //player1Plate.gameObject.SetActive(false);
-                        //player1BackPlate.gameObject.SetActive(true);
                         flipThirdPlace = false;
                         flipNumP3 = 1;
                     }
@@ -726,8 +575,6 @@ public class PostGameCanvas : MonoBehaviour
                     else
                     {
                         ThirdPlace3DPlate.transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, transform.eulerAngles.z);
-                        //player1Plate.gameObject.SetActive(false);
-                        //player1BackPlate.gameObject.SetActive(true);
                         flipThirdPlace = false;
                         flipNumP3 = 0;
                     }
@@ -738,21 +585,6 @@ public class PostGameCanvas : MonoBehaviour
                     }
                     break;
             }
-
-            
-
-            //Mathf.Lerp(ThirdPlace3DPlate.gameObject.transform.rotation.y, 180, 0.15f);
-            /*ThirdPlace3DPlate.gameObject.transform.Rotate(new Vector3(0, 5, 0), Space.Self);
-
-            if (ThirdPlace3DPlate.transform.rotation.y == 90)
-            {
-                player3Plate.gameObject.SetActive(false);
-                player3BackPlate.gameObject.SetActive(true);
-            }
-            if (ThirdPlace3DPlate.transform.rotation.y == -180)
-            {
-                flipThirdPlace = false;
-            }*/
         }
 
         if (flipFourthPlace)
@@ -773,8 +605,6 @@ public class PostGameCanvas : MonoBehaviour
                     else
                     {
                         FourthPlace3DPlate.transform.eulerAngles = new Vector3(transform.eulerAngles.x, 180, transform.eulerAngles.z);
-                        //player1Plate.gameObject.SetActive(false);
-                        //player1BackPlate.gameObject.SetActive(true);
                         flipFourthPlace = false;
                         flipNumP4 = 1;
                     }
@@ -792,8 +622,6 @@ public class PostGameCanvas : MonoBehaviour
                     else
                     {
                         FourthPlace3DPlate.transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, transform.eulerAngles.z);
-                        //player1Plate.gameObject.SetActive(false);
-                        //player1BackPlate.gameObject.SetActive(true);
                         flipFourthPlace = false;
                         flipNumP4 = 0;
                     }
@@ -804,21 +632,6 @@ public class PostGameCanvas : MonoBehaviour
                     }
                     break;
             }
-
-            
-
-            //Mathf.Lerp(FourthPlace3DPlate.gameObject.transform.rotation.y, 180, 0.15f);
-            /*FourthPlace3DPlate.gameObject.transform.Rotate(new Vector3(0, 5, 0), Space.Self);
-
-            if (FourthPlace3DPlate.transform.rotation.y == 90)
-            {
-                player4Plate.gameObject.SetActive(false);
-                player4BackPlate.gameObject.SetActive(true);
-            }
-            if (FourthPlace3DPlate.transform.rotation.y == -180)
-            {
-                flipFourthPlace = false;
-            }*/
         }
 
         if(playersReady == players)
@@ -901,63 +714,30 @@ public class PostGameCanvas : MonoBehaviour
 
     void UpdateStatsText(int placeNum, int playerNum)
     {
-        //DetermineOriginalHeadSpots();
         Debug.Log("Update stats for player " + playerNum);
         Debug.Log("place nums = " + placeNum);
         for (int i = 0; i < players; i++)
         {
-            //Debug.Log("playernum = " + playerNum);
             switch (placeNum)
             {
                 case 1:
-                    //Debug.Log(PointsStorage.P.P1Points[PointsStorage.P.total].ToString());
-                    //killsTexts[placeNum -1].text = "Kills: " + PointsStorage.P.P1Points[PointsStorage.P.kills].ToString();
                     killsTexts[playerNum- 1].text = "Kills: " + PointsStorage.P.playerPoints[playerNum - 1][PointsStorage.P.kills].ToString();
-                    //pointsTexts[placeNum - 1].text = "Points: " + PointsStorage.P.P1Points[PointsStorage.P.total].ToString();
                     pointsTexts[placeNum].text = "Points: " + PointsStorage.P.playerPoints[playerNum - 1][PointsStorage.P.total].ToString();
-                    //buildsTexts[placeNum - 1].text = "Builds: " + PointsStorage.P.P1Points[PointsStorage.P.builds].ToString();
                     buildsTexts[placeNum].text = "Builds: " + PointsStorage.P.playerPoints[playerNum - 1][PointsStorage.P.builds].ToString();
-                    //winsTexts[placeNum - 1].text = "Wins: " + PointsStorage.P.P1Points[PointsStorage.P.wins].ToString();
                     winsTexts[placeNum].text = "Wins: " + PointsStorage.P.playerPoints[playerNum - 1][PointsStorage.P.wins];
-
-                    //move banner, change scale
-
-                    //CANT PUT HERE FOR WHAT SAM WANTS
-                    //playerBanners[playerNum - 1].transform.position = bannerPos[placeNum].position;
-                    //bannerImages[playerNum - 1].GetComponent<RectTransform>().transform.position = bannerPos[placeNum].GetComponent<RectTransform>().position;
-                    //bannerImages[playerNum - 1].GetComponent<RectTransform>().transform.localScale = new Vector3(widths[placeNum - 1], widths[placeNum - 1], widths[placeNum - 1]);
 
                     Debug.Log("I Got Here");
                     firstBanners[playerNum - 1].enabled = true;
-                    //bannerImages[playerNum - 1].GetComponent<RectTransform>().transform.position = bannerPos[placeNum -1].GetComponent<RectTransform>().position;
-                    //bannerImages[playerNum - 1].GetComponent<RectTransform>().transform.localScale = new Vector3(widths[placeNum - 1], widths[placeNum - 1], widths[placeNum - 1]);
-
-                    //triggerP2 = true;
+                    
                     break;
                 case 2:
-                    
-                    //Debug.Log(PointsStorage.P.P2Points[PointsStorage.P.total].ToString());
-                    /*
-                    killsTexts[placeNum - 1].text = "Kills: " + PointsStorage.P.P2Points[PointsStorage.P.kills].ToString();
-                    pointsTexts[placeNum - 1].text = "Points: " + PointsStorage.P.P2Points[PointsStorage.P.total].ToString();
-                    buildsTexts[placeNum - 1].text = "Builds: " + PointsStorage.P.P2Points[PointsStorage.P.builds].ToString();
-                    winsTexts[placeNum - 1].text = "Wins: " + PointsStorage.P.P2Points[PointsStorage.P.wins].ToString();*/
-
                     killsTexts[placeNum].text = "Kills: " + PointsStorage.P.playerPoints[playerNum - 1][PointsStorage.P.kills].ToString();
-                    //pointsTexts[placeNum - 1].text = "Points: " + PointsStorage.P.P1Points[PointsStorage.P.total].ToString();
                     pointsTexts[placeNum].text = "Points: " + PointsStorage.P.playerPoints[playerNum - 1][PointsStorage.P.total].ToString();
-                    //buildsTexts[placeNum - 1].text = "Builds: " + PointsStorage.P.P1Points[PointsStorage.P.builds].ToString();
                     buildsTexts[placeNum].text = "Builds: " + PointsStorage.P.playerPoints[playerNum - 1][PointsStorage.P.builds].ToString();
-                    //winsTexts[placeNum - 1].text = "Wins: " + PointsStorage.P.P1Points[PointsStorage.P.wins].ToString();
                     winsTexts[placeNum].text = "Wins: " + PointsStorage.P.playerPoints[playerNum - 1][PointsStorage.P.wins];
 
                     //move banner, change scale
                     secondBanners[playerNum - 1].enabled = true;
-                    //bannerImages[playerNum - 1].GetComponent<RectTransform>().transform.position = bannerPos[placeNum - 1].GetComponent<RectTransform>().position;
-                    //bannerImages[playerNum - 1].GetComponent<RectTransform>().transform.localScale = new Vector3(widths[placeNum - 1], widths[placeNum - 1], widths[placeNum - 1]);
-
-                    //bannerImages[playerNum - 1].GetComponent<RectTransform>().transform.position = bannerPos[placeNum-1].GetComponent<RectTransform>().position;
-                    //bannerImages[playerNum - 1].GetComponent<RectTransform>().transform.localScale = new Vector3(widths[placeNum - 1], widths[placeNum - 1], widths[placeNum - 1]);
                     triggerP3 = true;
                     break;
                 case 3:
@@ -968,8 +748,6 @@ public class PostGameCanvas : MonoBehaviour
 
                     //move banner, change scale
                     thirdBanners[playerNum - 1].enabled = true;
-                    //bannerImages[playerNum - 1].GetComponent<RectTransform>().transform.position = bannerPos[placeNum - 1].GetComponent<RectTransform>().position;
-                    //bannerImages[playerNum - 1].GetComponent<RectTransform>().transform.localScale = new Vector3(widths[placeNum - 1], widths[placeNum - 1], widths[placeNum - 1]);
                     triggerP4 = true;
                     break;
                 case 4:
@@ -980,8 +758,6 @@ public class PostGameCanvas : MonoBehaviour
 
                     //move banner, change scale
                     fourthBanners[playerNum - 1].enabled = true;
-                    //bannerImages[playerNum - 1].GetComponent<RectTransform>().transform.position = bannerPos[placeNum - 1].GetComponent<RectTransform>().position;
-                    //bannerImages[playerNum - 1].GetComponent<RectTransform>().transform.localScale = new Vector3(widths[placeNum - 1], widths[placeNum - 1], widths[placeNum - 1]);
                     break;
             }
         }
@@ -997,42 +773,15 @@ public class PostGameCanvas : MonoBehaviour
             switch (placeNum)
             {
                 case 1:
-                    //Debug.Log("placenum = " + placeNum + ", playernum = " + i);
                     UpdateStatsText(places[0], placeNum);
-                    //UpdateBanner(i, placeNums[0]);
-
-                    /*p1KillsText.text = "Kills: " + PointsStorage.P.P1Points[PointsStorage.P.kills].ToString();
-                    p1PointsText.text = "Points: " + PointsStorage.P.P1Points[PointsStorage.P.total].ToString();
-                    p1BuildsText.text = "Builds: " + PointsStorage.P.P1Points[PointsStorage.P.builds].ToString();
-                    p1WinsText.text = "Wins: " + PointsStorage.P.P1Points[PointsStorage.P.wins].ToString();*/
                     break;
                 case 2:
-                    //Debug.Log("placenum = " + placeNum + ", playernum = " + i);
-                    UpdateStatsText(places[1], placeNum);
-
-                    /*p1KillsText.text = "Kills: " + PointsStorage.P.P2Points[PointsStorage.P.kills].ToString();
-                    p1PointsText.text = "Points: " + PointsStorage.P.P2Points[PointsStorage.P.total].ToString();
-                    p1BuildsText.text = "Builds: " + PointsStorage.P.P2Points[PointsStorage.P.builds].ToString();
-                    p1WinsText.text = "Wins: " + PointsStorage.P.P2Points[PointsStorage.P.wins].ToString();*/
-                    break;
+                    UpdateStatsText(places[1], placeNum);break;
                 case 3:
-                    //Debug.Log("placenum = " + placeNum + ", playernum = " + i);
                     UpdateStatsText(places[2], placeNum);
-                    Debug.Log("places[2] = " + places[2]);
-
-                    /*p1KillsText.text = "Kills: " + PointsStorage.P.P3Points[PointsStorage.P.kills].ToString();
-                    p1PointsText.text = "Points: " + PointsStorage.P.P3Points[PointsStorage.P.total].ToString();
-                    p1BuildsText.text = "Builds: " + PointsStorage.P.P3Points[PointsStorage.P.builds].ToString();
-                    p1WinsText.text = "Wins: " + PointsStorage.P.P3Points[PointsStorage.P.wins].ToString();*/
-                    break;
+                    Debug.Log("places[2] = " + places[2]);break;
                 case 4:
-                    //Debug.Log("placenum = " + placeNum + ", playernum = " + i);
                     UpdateStatsText(places[3], placeNum);
-
-                    /*p1KillsText.text = "Kills: " + PointsStorage.P.P4Points[PointsStorage.P.kills].ToString();
-                    p1PointsText.text = "Points: " + PointsStorage.P.P4Points[PointsStorage.P.total].ToString();
-                    p1BuildsText.text = "Builds: " + PointsStorage.P.P4Points[PointsStorage.P.builds].ToString();
-                    p1WinsText.text = "Wins: " + PointsStorage.P.P4Points[PointsStorage.P.wins].ToString();*/
                     break;
                default:
                     break;
@@ -1040,101 +789,17 @@ public class PostGameCanvas : MonoBehaviour
         }
     }
 
-    void DeterminePlaces()
-    {
-        
-        /*switch (placeNames[0])
-        {
-            case "Player 1":
-                places[0] = 1;
-                break;
-            case "Player 2":
-                places[0] = 2;
-                break;
-            case "Player 3":
-                places[0] = 3;
-                break;
-            case "Player 4":
-                places[0] = 4;
-                break;
-        }
-        switch (placeNames[1])
-        {
-            case "Player 1":
-                places[1] = 1;
-                break;
-            case "Player 2":
-                places[1] = 2;
-                break;
-            case "Player 3":
-                places[1] = 3;
-                break;
-            case "Player 4":
-                places[1] = 4;
-                break;
-        }
-
-        if (players >= 3)
-        {
-            switch (placeNames[2])
-            {
-                case "Player 1":
-                    places[2] = 1;
-                    break;
-                case "Player 2":
-                    places[2] = 2;
-                    break;
-                case "Player 3":
-                    places[2] = 3;
-                    break;
-                case "Player 4":
-                    places[2] = 4;
-                    break;
-            }
-        }
-
-        if (players == 4)
-        {
-            switch (placeNames[3])
-            {
-                case "Player 1":
-                    places[3] = 1;
-                    break;
-                case "Player 2":
-                    places[3] = 2;
-                    break;
-                case "Player 3":
-                    places[3] = 3;
-                    break;
-                case "Player 4":
-                    places[3] = 4;
-                    break;
-            }
-        }*/
-        //Debug.Log(placeNames[0]);
-    }
-
-    
-
-    
-
     void CompareTotals()
     {
 
         //Calculate first place
         for (int f = 0; f < players; f++)
         {
-            //Debug.Log("place[].length = " + place.Length);
             if (place[0] < playerPoints[f])
             {
-                //Debug.Log("Here");
                 place[0] = playerPoints[f];
-                //first = playerName[f];
                 placeNames[0] = playerName[f];
                 _rewiredPlayersByPlacing.Add(selector.ActivePlayers[f]);
-                //placeNums[0] = f + 1;
-                //pointsManager.placeNames[0] = playerName[f];
-                //playerImages[f].sprite = playerFaces[f][1];
             }
         }
 
@@ -1148,15 +813,7 @@ public class PostGameCanvas : MonoBehaviour
                     place[1] = playerPoints[f];
                     placeNames[1] = playerName[f];
                     _rewiredPlayersByPlacing.Add(selector.ActivePlayers[f]);
-                    //placeNums[1] = f + 1;
-                    //pointsManager.placeNames[1] = playerName[f];
-                    //second = playerName[f];
-                    //playerImages[f].sprite = playerFaces[f][0];
-                    if (players == 2)
-                    {
-                        //last = second;
-                        //playerImages[f].sprite = playerFaces[f][2];
-                    }
+                    
                 }
             }
         }
@@ -1173,15 +830,7 @@ public class PostGameCanvas : MonoBehaviour
                         placeNames[2] = playerName[f];
                         place[2] = playerPoints[f];
                         _rewiredPlayersByPlacing.Add(selector.ActivePlayers[f]);
-                        //placeNums[2] = f + 1;
-                        //pointsManager.placeNames[2] = playerName[f];
-                        //third = playerName[f];
-                        //playerImages[f].sprite = playerFaces[f][0];
-                        if (players == 3)
-                        {
-                            //last = third;
-                            //playerImages[f].sprite = playerFaces[f][2];
-                        }
+                        
                     }
                 }
             }
@@ -1193,15 +842,11 @@ public class PostGameCanvas : MonoBehaviour
                 {
                     if (place[0] > playerPoints[f] && place[1] > playerPoints[f] && place[2] > playerPoints[f])
                     {
-                        if (place[3] > playerPoints[f] /*|| last == ""*/)
+                        if (place[3] > playerPoints[f])
                         {
                             placeNames[3] = playerName[f];
                             place[3] = playerPoints[f];
                             _rewiredPlayersByPlacing.Add(selector.ActivePlayers[f]);
-                            //placeNums[3] = f + 1;
-                            //pointsManager.placeNames[3] = playerName[f];
-                            //last = playerName[f];
-                            //playerImages[f].sprite = playerFaces[f][2];
                         }
                     }
                 }
@@ -1230,9 +875,6 @@ public class PostGameCanvas : MonoBehaviour
 
     public  void RotatePlate(int playerNum)
     {
-        //determine place
-        //rotate gameobject
-        //when half way switch top layer off and bottom layer on to avoid see through
         Debug.Log("In rotate, playernum = " + playerNum);
         switch (playerNum)
         {
@@ -1244,17 +886,17 @@ public class PostGameCanvas : MonoBehaviour
                 }
                 else if (placeNames[1] == "Player 1")
                 {
-                    //flip the first place 3D plate
+                    //flip the second place 3D plate
                     flipFirstPlace = true;
                 }
                 else if (placeNames[2] == "Player 1")
                 {
-                    //flip the first place 3D plate
+                    //flip the third place 3D plate
                     flipFirstPlace = true;
                 }
                 else if (placeNames[3] == "Player 1")
                 {
-                    //flip the first place 3D plate
+                    //flip the fourth place 3D plate
                     flipFirstPlace = true;
                 }
                 _startTime = Time.time;
@@ -1267,17 +909,17 @@ public class PostGameCanvas : MonoBehaviour
                 }
                 else if (placeNames[1] == "Player 2")
                 {
-                    //flip the first place 3D plate
+                    //flip the second place 3D plate
                     flipSecondPlace = true;
                 }
                 else if (placeNames[2] == "Player 2")
                 {
-                    //flip the first place 3D plate
+                    //flip the third place 3D plate
                     flipSecondPlace = true;
                 }
                 else if (placeNames[3] == "Player 2")
                 {
-                    //flip the first place 3D plate
+                    //flip the fourth place 3D plate
                     flipSecondPlace = true;
                 }
                 _startTime = Time.time;
@@ -1290,17 +932,17 @@ public class PostGameCanvas : MonoBehaviour
                 }
                 else if (placeNames[1] == "Player 3")
                 {
-                    //flip the first place 3D plate
+                    //flip the second place 3D plate
                     flipThirdPlace = true;
                 }
                 else if (placeNames[2] == "Player 3")
                 {
-                    //flip the first place 3D plate
+                    //flip the third place 3D plate
                     flipThirdPlace = true;
                 }
                 else if (placeNames[3] == "Player 3")
                 {
-                    //flip the first place 3D plate
+                    //flip the fourth place 3D plate
                     flipThirdPlace = true;
                 }
                 _startTime = Time.time;
@@ -1313,17 +955,17 @@ public class PostGameCanvas : MonoBehaviour
                 }
                 else if (placeNames[1] == "Player 4")
                 {
-                    //flip the first place 3D plate
+                    //flip the second place 3D plate
                     flipFourthPlace = true;
                 }
                 else if (placeNames[2] == "Player 4")
                 {
-                    //flip the first place 3D plate
+                    //flip the third place 3D plate
                     flipFourthPlace = true;
                 }
                 else if (placeNames[3] == "Player 4")
                 {
-                    //flip the first place 3D plate
+                    //flip the fourth place 3D plate
                     flipFourthPlace = true;
                 }
                 _startTime = Time.time;
@@ -1334,81 +976,7 @@ public class PostGameCanvas : MonoBehaviour
 
         }
     }
-
-    /*void DetermineOriginalHeadSpots()
-    {
-        
-
-        //find the right place to put the heads on start
-        //add these points to the points totals array in points storage
-
-        for (int index = 0; index < players; index++)
-        {
-            
-            //winner will be constant
-            //Debug.Log("PlayerPoints in PostGame = " + playerPoints.Length);
-            if (playerPoints[index] >= winner)
-            {
-                winner = playerPoints[index];
-                //winningPlayer = players[index];
-            }
-
-            //if there are 2 players
-            else if (players == 2)
-                loser = playerPoints[index];
-            //if there are 3 players
-            else if (players == 3)
-            {
-                if (playerPoints[index] < middleOne)
-                    loser = playerPoints[index];
-                if (playerPoints[index] > middleOne)
-                    middleOne = playerPoints[index];
-            }
-            //if there are 4 players
-            else if (players == 4)
-            {
-                if (playerPoints[index] < middleTwo)
-                    loser = playerPoints[index];
-                else if (playerPoints[index] > loser && playerPoints[index] < winner)
-                {
-                    if (playerPoints[index] > middleOne)
-                        middleOne = playerPoints[index];
-                    else if (playerPoints[index] > middleTwo && playerPoints[index] < middleOne)
-                        middleTwo = playerPoints[index];
-                }
-            }
-            //Vector2.Lerp(playerBanners[index].GetComponent<RectTransform>().transform.position, endPoint.position, 1f);
-            //pointsPercent = ((float)playerPoints[index] / (float)winner);
-            //emptyFollow.transform.position = Vector3.Lerp(startPoint.transform.position, endPoint.transform.position, pointsPercent);
-            //playerHeadsArr[index].transform.position = Vector3.Lerp(playerHeadsArr[index].transform.position, emptyFollow.transform.position, 1f);
-            for (int i = 0; i < players; i++)
-            {
-                PointsStorage.P.pointsTotals[i] += playerPoints[i];
-            }
-
-        }
-
-        for (int i = 0; i < players; i++)
-        {
-            //Debug.Log("SHOULD BE MOVING HEADS");
-            //float distance = Vector2.Distance(startPoint.position, endPoint.position);
-            pointsPercent = ((float)playerPoints[i] / (float)winner);
-            pointsPercent = Mathf.Abs(pointsPercent - 1f);
-            Debug.Log("winner = " + winner + ", player points = " + playerPoints[i] + "Percentage = " + pointsPercent);
-            //distance = distance * pointsPercent;
-            //Vector3 difference = endPoint.transform.position - startPoint.transform.position;
-            //difference = difference.normalized * distance;
-            //Vector3.Lerp(playerHeadsArr[i].GetComponent<RectTransform>().position, startPoint.position + difference, 1f);
-
-
-            emptyFollow.transform.position = Vector3.Lerp(startPoint.transform.position, endPoint.transform.position, pointsPercent);
-            playerHeadsArr[i].transform.position = Vector3.Lerp(playerHeadsArr[i].transform.position, emptyFollow.transform.position, 1f);
-            //Debug.Log("emptyFollow position = " + emptyFollow.transform.position);
-            Debug.Log("player " + i + " has been moved, points percent = " + pointsPercent);
-
-        }
-    }*/
-
+    
     public void ContinueButton(int playerNum)
     {
         if(playersReady != players && readyUp[playerNum - 1].gameObject.activeInHierarchy)
